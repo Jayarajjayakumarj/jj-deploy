@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: jjapp1
+  name: jjapp1
+  namespace: jjns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jjapp1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: jjapp1
+    spec:
+      containers:
+      - image: jayarajjayakumar/jjmobi:appv1
+        name: jjmobi
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
+
+
+## adding service with nodeport 
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: jjapp1
+  name: jjapp1
+  namespace: jjns
+spec:
+  ports:
+  - name: 1234-80
+    port: 1234
+    protocol: TCP
+    targetPort: 80
+  selector: # need to match label of pods 
+    app: jjapp1
+  type: NodePort
+status:
+  loadBalancer: {}
