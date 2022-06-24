@@ -19,7 +19,7 @@ spec:
         app: jjapp1
     spec:
       containers:
-      - image: jayarajjayakumar/jjmobi:appv1
+      - image: jayarajjayakumar/jjdog:appv1
         name: jjmobi
         ports:
         - containerPort: 80
